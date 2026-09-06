@@ -1,6 +1,15 @@
-# Ignore build artifacts
-bus-service
-bus-client
+# Ignore built binaries and common build artifacts
+/bus-service
+/bus-client
 *.o
-.worktrees/
-.env
+*.so
+*.a
+/build/
+/target/
+*.exe
+*.dll
+*.pyc
+.cache/
+.DS_Store
+.vscode/
+.idea/
