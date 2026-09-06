@@ -41,6 +41,21 @@ systemctl --user daemon-reload
 systemctl --user enable --now net-poettering-calculator.service
 ```
 
+## Run with run.sh (convenience)
+A convenience script `run.sh` is included to build both examples, start the service in the background, wait for it to register on the session D-Bus, run the client, then stop the server the script started.
+
+Usage:
+
+```bash
+chmod +x run.sh      # once
+./run.sh             # uses defaults: 6 7
+./run.sh 8 9         # run client with 8 and 9
+```
+
+Notes:
+- If another process or a systemd user unit already holds the `net.poettering.Calculator` name on the session bus, `run.sh` may time out waiting for registration. Stop the existing service or change the well-known name in `bus-service.c` for testing.
+- For persistent management, use the provided systemd user unit in `contrib/`.
+
 ## Notes
 - `bus-service` registers `net.poettering.Calculator` on the *user* bus and implements Multiply/Divide.
 - `bus-client` now calls that Calculator on the *user* bus (you can pass two integers as arguments).
