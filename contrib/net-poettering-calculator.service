@@ -1,0 +1,11 @@
+[Unit]
+Description=net.poettering Calculator example
+
+[Service]
+# Replace the path below with the full path to the built bus-service binary in your system.
+# Using %h expands to the user's home directory for user units.
+ExecStart=%h/sdbus-lea/bus-service
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
